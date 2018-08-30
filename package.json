@@ -1,9 +1,9 @@
 {
   "name": "bookmark-it",
-  "version": "1.0.0",
-  "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "node-sass -wr ./scss/main.scss -o ./ --source-map-contents --source-map true"
+    "start": "rm -f main.css main.css.map & node-sass ./scss/main.scss -o ./ --source-map-contents --source-map true & node-sass -wr ./scss/main.scss -o ./ --source-map-contents --source-map true",
+    "demo": "rm -f main.css main.css.map & node-sass -x --output-style expanded ./scss/main.scss -o ./",
+    "build": "rm -f main.css main.css.map & node-sass -x --output-style compressed ./scss/main.scss -o ./"
   }
 }
