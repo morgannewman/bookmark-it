@@ -18,10 +18,20 @@ const store = (function() {
     ));
   };
 
+  const findById = function(id) {
+    return state.items.find(((item) => item.id === id));
+  };
+
   const populateStore = function() {
-    api.fetchItems((items) => {
-      items.forEach((item) => store.addItem(item));
-    });
+    // api.fetchItems((items) => {
+    //   items.forEach((item) => store.addItem(item));
+    // });
+    api.MOCK_DATA.forEach((item) => store.addItem(item));
+    list.render();
+  };
+
+  const toggleItemIsExpanded = function(item) {
+    item.expanded = !item.expanded;
   };
 
   const toggleAddBookmarkForm = function() {
@@ -34,8 +44,9 @@ const store = (function() {
 
   return {
     state,
-
+    toggleItemIsExpanded,
     populateStore,
+    findById,
     toggleAddBookmarkForm,
     shouldDisplayAddForm,
     addItem
