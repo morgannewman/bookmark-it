@@ -6,6 +6,7 @@
     // add-bookmark-textarea
 
 .add-bookmark-container {
+  display: none;
   @include shadow;
   // padding: 8px;
   background: $focus;

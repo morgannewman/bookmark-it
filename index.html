@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bookmark It</title>
-
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Slab:400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
@@ -20,7 +22,7 @@
       <h1>Bookmark It</h1>
     </header>
     <!-- Main buttons -->
-    <button type="button" class="button-primary button-primary-cta">Add Bookmark +</button>
+    <button type="button" class="button-primary button-primary-cta js-add-bookmark-toggler">Add Bookmark +</button>
     <button type="button" class="button-ghost button-ghost-filter">Filter by Rating <span class="fas fa-angle-down"></span></button>
     <!-- Add Bookmark Form -->
     <div class="add-bookmark-container">
@@ -85,7 +87,6 @@
       <section class="list"></section>
       <!-- Vendor -->
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="scripts/clamp.js"></script>
       <!-- App -->
       <script src="scripts/api.js"></script>
       <script src="scripts/store.js"></script>
