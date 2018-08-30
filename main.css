@@ -66,14 +66,72 @@ html {
 
 .list-item {
   padding: 8px 8px;
-  height: 100%; }
+  position: relative; }
   @media (min-width: 661px) {
     .list-item {
       padding: 8px 16px; } }
 
+.list-item-left {
+  position: absolute;
+  float: left; }
+
 .list-item h3 {
   font-size: 1.414em;
-  font-color: #283267; }
+  font-color: #283267;
+  padding-bottom: 8px; }
+
+.list-item-expander {
+  height: 24px;
+  width: 24px;
+  float: right;
+  margin-top: 18px;
+  color: #5A70E7; }
+
+.list-item-rating {
+  position: relative;
+  height: 1.4rem;
+  line-height: 1.2em;
+  font-size: 1.2em; }
+
+.list-item-rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer; }
+  .list-item-rating label:last-child {
+    position: static; }
+  .list-item-rating label:nth-child(1) {
+    z-index: 5; }
+  .list-item-rating label:nth-child(2) {
+    z-index: 4; }
+  .list-item-rating label:nth-child(3) {
+    z-index: 3; }
+  .list-item-rating label:nth-child(4) {
+    z-index: 2; }
+  .list-item-rating label:nth-child(5) {
+    z-index: 1; }
+
+.list-item-rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; }
+
+.list-item-rating label .icon {
+  float: left;
+  color: transparent; }
+
+.list-item-rating label:last-child .icon {
+  color: #C4C4C4; }
+
+.list-item-rating:not(:hover) label input:checked ~ .icon,
+.list-item-rating:hover label:hover input ~ .icon {
+  color: #5A70E7; }
+
+.list-item-rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #C4C4C4;
+  text-shadow: 0 0 5px #5A70E7; }
 
 h1 {
   color: #342828;

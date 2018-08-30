@@ -10,15 +10,27 @@
 }
 
 .list-item {
-  // background-color: pink;
   padding: 8px 8px;
   @include respond-above-small {
     padding: 8px 16px;
   }
+  position: relative;
+}
 
-  height: 100%;
+.list-item-left {
+  position: absolute;
+  float: left;
 }
 
 .list-item h3 {
   @include subtitle;
+  padding-bottom: 8px;
+}
+
+.list-item-expander {
+  height: 24px;
+  width: 24px;
+  float: right;
+  margin-top: 18px;
+  color: $primary;
 }
