@@ -1,0 +1,9 @@
+{
+  "name": "bookmark-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "node-sass -wr ./scss/main.scss -o ./ & live-server"
+  }
+}
