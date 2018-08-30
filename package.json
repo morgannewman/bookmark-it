@@ -4,6 +4,6 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "node-sass -wr ./scss/main.scss -o ./ & live-server"
+    "start": "node-sass -wr ./scss/main.scss -o ./ --source-map-contents --source-map true"
   }
 }

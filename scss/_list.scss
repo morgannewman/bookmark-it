@@ -1,0 +1,24 @@
+.list-container {
+  // background-color: pink;
+  height: 64px;
+  @include respond-above-small {
+    height: 72px;
+  }
+  border-radius: 10px;
+  border: 2px $primary solid;
+  // background-color: pink;
+}
+
+.list-item {
+  // background-color: pink;
+  padding: 8px 8px;
+  @include respond-above-small {
+    padding: 8px 16px;
+  }
+
+  height: 100%;
+}
+
+.list-item h3 {
+  @include subtitle;
+}
