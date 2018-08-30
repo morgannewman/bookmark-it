@@ -82,15 +82,55 @@
     </div>
     <main>
       <!-- List of Bookmarks -->
-      <section class="list"></section>
-      <!-- Vendor -->
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="scripts/clamp.js"></script>
-      <!-- App -->
-      <script src="scripts/api.js"></script>
-      <script src="scripts/store.js"></script>
-      <script src="scripts/list.js"></script>
-      <script src="app.js"></script>
-    </body>
-    
-    </html>
+      <section class="list">
+        <div class="list-container list-container-condensed">
+          <div class="list-item">
+              <div class="fas fa-angle-down fa-lg list-item-expander"></div>
+              <h3 class="list-item-title">Hilarious Cat Video</h3>
+              <div class="list-item-container">
+              <div class="list-item-stars">
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-inactive">★</span>
+              </div>
+            </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="list-container list-container-expanded">
+          <div class="fas fa-angle-up fa-lg list-item-condenser"></div>
+          <h3 class="list-item-title list-item-title-expanded">Hilarious Cat Video</h3>
+          <div class="list-item-container list-item-container-expanded">
+            <p class="list-item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores quisquam itaque quas odit, voluptatem maxime consequuntur ratione. Vero facilis, fugit cum recusandae deserunt debitis ea beatae
+              voluptate aspernatur aperiam sunt officia excepturi enim eveniet placeat voluptatibus reiciendis reprehenderit culpa.</p>
+            <div class="list-item-expanded-bottom-items">
+              <button class="button-primary">Visit Site</button>
+              <div class="list-item-stars list-item-stars-expanded">
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-active">★</span>
+                <span class="star star-inactive">★</span>
+              </div>
+              <i class="list-item-delete fas fa-trash-alt fa-lg"></i>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+  <!-- Vendor -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="scripts/clamp.js"></script>
+  <!-- App -->
+  <script src="scripts/api.js"></script>
+  <script src="scripts/store.js"></script>
+  <script src="scripts/list.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

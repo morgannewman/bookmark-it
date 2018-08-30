@@ -1,36 +1,131 @@
 .list-container {
-  // background-color: pink;
+  margin: 8px 0;
   height: 64px;
   @include respond-above-small {
     height: 72px;
   }
   border-radius: 10px;
   border: 2px $primary solid;
-  // background-color: pink;
+  z-index: 0;
 }
 
-.list-item {
+.list-container-expanded {
+  margin: 8px 0;
+  height: 136px;
+  @include respond-above-small {
+    height: 170px;
+  }
+  border-radius: 10px;
+  border: 2px $primary solid;
+  background-color: $primary;
+  margin-bottom: 5px;
+
+}
+
+
+.list-item-title {
+  @include subtitle;
   padding: 8px 8px;
   @include respond-above-small {
     padding: 8px 16px;
   }
   position: relative;
+  z-index: 1;
 }
 
-.list-item-left {
-  position: absolute;
-  float: left;
+.list-item-title-expanded {
+  display: block;
+  width: 100%;
+  color: white;
 }
 
-.list-item h3 {
-  @include subtitle;
-  padding-bottom: 8px;
+.list-item-container {
+  padding-left: 8px;
+}
+
+.list-item-container-expanded {
+  padding-top: 8px;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+
+
+.list-item-expanded-bottom-items {
+  // padding-bottom: 16px;
+}
+
+.list-item-stars-expanded {
+  display: inline-block;
+}
+
+p.list-item-description {
+  $font-size: 1rem;
+  $line-height: 1.4;
+  $lines-to-show: 3;
+  display: block; 
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 220px;
+  @media (min-width: 321px) {
+    max-width: 275px;
+  }
+  @media (min-width: 421px) {
+    max-width: 375px;
+  }
+  @include respond-above-small {
+    max-width: 550px;
+  }
+  height: $font-size*$line-height*$lines-to-show; 
+  /* Fallback for non-webkit */
+  margin: 0 auto 0 0;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list-item-expander {
   height: 24px;
   width: 24px;
   float: right;
-  margin-top: 18px;
+  margin-top: 25px;
   color: $primary;
+  margin-right: 4px;
+}
+
+.list-item-condenser {
+  height: 24px;
+  width: 24px;
+  float: right;
+  margin-top: 11px;
+  margin-right: 4px;
+  color: white;
+  z-index: 2;
+}
+
+.list-item-delete {
+  float: right;
+  margin-top: 14px;
+  margin-right: 16px;
+  color: $primary;
+}
+
+
+
+
+// LVHA
+
+.list-container-condensed:hover {
+  border: 2px $focus solid;
+
+  .list-item-expander {
+    color: $focus;
+  }
+}
+
+.list-item-expander:hover {
+  color: $focus;
 }

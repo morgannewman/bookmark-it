@@ -1,0 +1,23 @@
+// Font-size baseline
+@mixin h1 { 
+  font-size: 2.827em;
+}
+
+@mixin subtitle {
+  font-size: 1.414em;
+  font-color: $focus;
+}
+
+@mixin primary-button-font {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 100;
+  color: white;
+}
+
+@mixin ghost-button-font {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 100;
+  color: $primary;
+}

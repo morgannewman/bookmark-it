@@ -12,3 +12,11 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.text-bold {
+  font-weight: bold;
+}

@@ -1,8 +1,21 @@
-.list-item-rating {
+.star-active {
+  color: $primary;
+}
+
+.star-inactive {
+  color: $gray;
+}
+
+.star-rating {
+  margin-top: 3px;
+  margin-right: 2.5px;
+}
+
+.list-item-rating, .star-active, .star-inactive {
   position: relative;
   height: 1.4rem;
-  line-height: 1.2em;
-  font-size: 1.2em;
+  line-height: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .list-item-rating label {
@@ -40,21 +53,21 @@
   opacity: 0;
 }
 
-.list-item-rating label .icon {
+.list-item-rating label .star {
   float: left;
   color: transparent;
 }
 
-.list-item-rating label:last-child .icon {
+.list-item-rating label:last-child .star {
   color: $gray;
 }
 
-.list-item-rating:not(:hover) label input:checked ~ .icon,
-.list-item-rating:hover label:hover input ~ .icon {
+.list-item-rating:not(:hover) label input:checked ~ .star,
+.list-item-rating:hover label:hover input ~ .star {
   color: $primary;
 }
 
-.list-item-rating label input:focus:not(:checked) ~ .icon:last-child {
+.list-item-rating label input:focus:not(:checked) ~ .star:last-child {
   color: $gray;
   text-shadow: 0 0 5px $primary;
 }

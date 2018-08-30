@@ -1,0 +1,49 @@
+// button-primary-cta, button-ghost-filter
+// button-ghost-cancel, button-primary-submit
+
+.button-primary, .button-ghost {
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px $primary solid;
+  padding: 4px 8px;
+  @include respond-above-small {
+    padding: 8px 16px;
+  }
+}
+
+.button-primary {
+  @include primary-button-font;
+  background-color: $primary;
+}
+
+.button-ghost {
+  @include ghost-button-font;
+}
+
+.button-primary-cta, .button-ghost-filter {
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.button-primary-cta {
+}
+
+.button-ghost-filter {
+}
+
+// LVHA
+
+.button-ghost:active, .button-hover:active, .button-primary:hover, .button-ghost:hover {
+  @include shadow;
+  background-color: $focus;
+  border: 1px $focus solid;
+  color: white;
+} 
+
+
+.button-ghost:active {
+}
+
+.button-ghost-cancel {
+  margin-left: 0px;
+}

@@ -4,9 +4,13 @@
 @import 'variables';
 // BASE
 @import 'base';
+@import 'colors';
+@import 'typography';
 // COMPONENTS
+@import 'buttons';
 @import 'list';
 @import 'stars';
+@import 'add-bookmark';
 
 h1 {
   color: $black;
