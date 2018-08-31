@@ -1,3 +1,6 @@
+$small-keyline: 12px;
+$large-keyline: 16px;
+
 .list-container {
   margin: 8px 0;
   height: 64px;
@@ -25,9 +28,9 @@
 
 .list-item-title {
   @include subtitle;
-  padding: 8px 8px;
+  padding: 8px $small-keyline;
   @include respond-above-small {
-    padding: 8px 16px;
+    padding: 8px $large-keyline;
   }
   position: relative;
 }
@@ -39,7 +42,10 @@
 }
 
 .list-item-container {
-  padding-left: 8px;
+  padding-left: $small-keyline;
+  @include respond-above-small {
+    padding-left: $large-keyline;
+  }
 }
 
 .list-item-container-expanded {
@@ -87,32 +93,57 @@ p.list-item-description {
 }
 
 .list-item-expander {
-  height: 24px;
-  width: 24px;
+  // 64, 72
+  height: 16px;
+  width: 16px;
   float: right;
-  margin-top: 25px;
+  padding-top: 0;
+  // margin-top: 24px;
   color: $primary;
-  margin-right: 4px;
+  margin-right: $small-keyline + 2;
+  margin-top: 16px;
+  @include respond-above-small {
+    margin-right: $large-keyline + 3;
+    // (72px container - 16px img) / 2 - 8px top padding
+    margin-top: 20px;
+  }
 }
 
 .list-item-condenser {
-  height: 24px;
-  width: 24px;
+  height: 12px;
+  width: 12px;
+  @include respond-above-small {
+    height: 16px;
+    width: 16px;
+  }
   float: right;
-  margin-top: 11px;
-  margin-right: 4px;
   color: white;
+  z-index: 3;
+  margin-right: $small-keyline + 2;
+  // 32, 38px title bar height
+  margin-top: 6px;
+  @include respond-above-small {
+    margin-right: $large-keyline + 3;
+  }
 }
 
 .list-item-delete {
+  // 42, 51
   float: right;
-  margin-top: 14px;
-  margin-right: 16px;
+  // margin-top: 14px;
+  // margin-right: 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: $small-keyline;
+  margin-top: 12px;
+  @include respond-above-small {
+    width: 20px;
+    height: 20px;
+    margin-right: $large-keyline;
+    margin-top: 14px;
+  }
   color: $primary;
 }
-
-
-
 
 // LVHA
 
@@ -121,6 +152,13 @@ p.list-item-description {
 
   .list-item-expander {
     color: $focus;
+  }
+}
+
+.list-item-title-expanded:hover {
+  .list-container-expanded {
+    background-color: $focus;
+    border: 2px $focus solid;
   }
 }
 

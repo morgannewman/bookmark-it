@@ -41,6 +41,15 @@
   @include shadow;
 }
 
+.button-primary-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 12px;
+  @include respond-above-small {
+    margin-bottom: 9px;
+  }
+}
+
 
 // LVHA
 
