@@ -1,0 +1,18 @@
+/* * * * * * * * * * * /
+* * * * LAYOUT * * * * 
+/* * * * * * * * * * */
+
+.main-container {
+  max-width: 720px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2% 5%;
+}
+
+.main-gutter {
+  // display: inline-block;
+  height: 500px;
+  margin: 24px 48px 0 48px;
+  background-color: green;
+}

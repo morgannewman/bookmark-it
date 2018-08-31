@@ -6,28 +6,11 @@ const store = (function() {
     ratingsFilterLevel: 0
   };
 
-  // {
-  //   "id": "8sdfbvbs65sd",
-  //   "title": "Google",
-  //   "url": "http://google.com",
-  //   "desc": "An indie search engine startup",
-  //   "rating": 4
-  // }
-  const addItem = function(bookmarkObj) {
-    state.items.unshift(Object.assign(
-      bookmarkObj, 
-      {expanded: false}
-    ));
-  };
+  // UTILS
 
   const findById = function(id) {
     return state.items.find(((item) => item.id === id));
   };
-
-  const findAndDelete = function(id) {
-    const itemIndex = state.items.findIndex(((item) => item.id === id));
-    state.items.splice(itemIndex, 1);
-  }
 
   const populateStore = function() {
     // api.MOCK_DATA.forEach((item) => store.addItem(item));
@@ -40,36 +23,66 @@ const store = (function() {
     });
   };
 
-  const toggleItemIsExpanded = function(item) {
-    item.expanded = !item.expanded;
+  // ADDING
+
+  const addItem = function(bookmarkObj) {
+    state.items.unshift(Object.assign(
+      bookmarkObj, 
+      {expanded: false}
+    ));
   };
 
   const toggleAddBookmarkForm = function() {
     state.displayAddBookmarkForm = !state.displayAddBookmarkForm;
   };
 
-  const toggleRatingsFilterMenu = function() {
-    state.displayRatingFilterMenu = !state.displayRatingFilterMenu;
-  };
-
   const shouldDisplayAddForm = function() {
     return state.displayAddBookmarkForm === true;
   }
+
+  // REMOVING
+
+  const findAndDelete = function(id) {
+    const itemIndex = state.items.findIndex(((item) => item.id === id));
+    state.items.splice(itemIndex, 1);
+  };
+
+  // FILTERING
+  const setFilterLevel = function(level) {
+     state.ratingsFilterLevel = level;
+  };
+
+  const toggleRatingsFilterMenu = function() {
+    state.displayRatingFilterMenu = !state.displayRatingFilterMenu;
+  };
 
   const shouldDisplayFilterMenu = function() {
     return state.displayRatingFilterMenu === true;
   };
 
+  // EXPANDING/CONTRACTING CARDS
+  
+  const toggleItemIsExpanded = function(item) {
+    item.expanded = !item.expanded;
+  };
+
   return {
     state,
-    toggleItemIsExpanded,
-    populateStore,
+
+    // Utils
     findById,
-    findAndDelete,
+    populateStore,
+    // Adding
     toggleAddBookmarkForm,
-    toggleRatingsFilterMenu,
     shouldDisplayAddForm,
+    addItem,
+    // Removing
+    findAndDelete,
+    // Filtering
     shouldDisplayFilterMenu,
-    addItem
+    toggleRatingsFilterMenu,
+    setFilterLevel,
+    // Expand/Contract cards
+    toggleItemIsExpanded
   };
 }());

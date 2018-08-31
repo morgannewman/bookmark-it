@@ -3,37 +3,15 @@
 // ABSTRACTS
 @import 'variables';
 // BASE
-@import 'base';
 @import 'colors';
 @import 'typography';
+@import 'cursor';
+@import 'base';
+// LAYOUT
+@import 'layout';
 // COMPONENTS
 @import 'buttons';
 @import 'list';
 @import 'stars';
 @import 'add-bookmark';
 @import 'dropdown';
-
-h1 {
-  color: $black;
-  font-family: 'Lobster', cursive;
-  @include h1;
-}
-
-/* * * * * * * * * * * /
-* * * * LAYOUT * * * * 
-/* * * * * * * * * * */
-
-.main-container {
-  max-width: 720px;
-  height: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2% 5%;
-}
-
-.main-gutter {
-  // display: inline-block;
-  height: 500px;
-  margin: 24px 48px 0 48px;
-  background-color: green;
-}

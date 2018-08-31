@@ -30,7 +30,6 @@
     padding: 8px 16px;
   }
   position: relative;
-  z-index: 1;
 }
 
 .list-item-title-expanded {
@@ -103,7 +102,6 @@ p.list-item-description {
   margin-top: 11px;
   margin-right: 4px;
   color: white;
-  z-index: 2;
 }
 
 .list-item-delete {
@@ -127,5 +125,9 @@ p.list-item-description {
 }
 
 .list-item-expander:hover {
+  color: $focus;
+}
+
+.list-item-delete:hover {
   color: $focus;
 }

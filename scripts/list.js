@@ -107,6 +107,15 @@ const list = (function() {
   // EVENT LISTENERS
   //_____________________________________________
 
+  // ADDING ITEMS
+
+  // const inputForm = {
+  //   title: $('.js-add-bookmark-title'),
+  //   url: $('.js-add-bookmark-url'),
+  //   desc: $('.js-add-bookmark-desc'),
+  //   stars: $('.js-add-bookmark-rating input:checked')
+  // };
+
   const handleAddBookmarkFormToggle = function() {
     page.addBookmarkToggler.on('click', (e) => {
       // Toggle the display state in storage
@@ -115,6 +124,52 @@ const list = (function() {
       render();
     });
   };
+
+  const grabInput = function() {
+    const input = {};
+    input.title = $('.js-add-bookmark-title').val();
+    input.url = $('.js-add-bookmark-url').val();
+    input.desc = $('.js-add-bookmark-desc').val();
+    input.rating = $('.js-add-bookmark-rating input:checked').val();
+    return input;
+  };
+
+  const resetForm = function() {
+    $('.js-add-bookmark-title').val('');
+    $('.js-add-bookmark-url').val('');
+    $('.js-add-bookmark-desc').val('');
+    $('.js-add-bookmark-rating input:checked').prop('checked', false);
+    };
+  
+  const handleAddBookmarkFormCancel = function() {
+    page.addBookmarkFormContainer.on('click','.js-add-cancel', (e) => {
+      // clear form
+      resetForm();
+      store.toggleAddBookmarkForm();
+      renderBookmarkFormDisplay();
+    });
+  };
+
+  const handleAddBookmarkSubmit = function() {
+    page.addBookmarkForm.on('submit', (e) => {
+      e.preventDefault();
+      const userInput = grabInput();
+      // clear form
+      resetForm();
+      store.toggleAddBookmarkForm();
+      renderBookmarkFormDisplay();
+      // send new item to API
+      api.addItem(userInput, (response) => {
+        // add item to store
+        store.addItem(response);
+        // render new view
+        render();
+      });
+      
+    });
+  };
+
+  // FILTERING ITEMS
   const handleFilterButtonToggle = function() {
     page.menuFilterContainer.on('click', '.js-button-filter', (e) => {
       // Toggle the display state in storage
@@ -123,47 +178,21 @@ const list = (function() {
       render();
     });
   };
- 
-  const grabInput = function(inputForm) {
-    const result = {};
-    result.title = inputForm.title.val();
-    result.url = inputForm.url.val();
-    result.desc = inputForm.desc.val();
-    result.rating = inputForm.rating.val();
-    return result;
-  };
 
-  const resetForm = function(inputForm) {
-    inputForm.title.val('');
-    inputForm.url.val('');
-    inputForm.desc.val('');
-    inputForm.rating.prop('checked', false);
-    };
-
-  const handleAddBookmarkSubmit = function() {
-    page.addBookmarkForm.on('submit', (e) => {
-      e.preventDefault();
-      const inputForm = {
-        title: $('.js-add-bookmark-title'),
-        url: $('.js-add-bookmark-url'),
-        desc: $('.js-add-bookmark-desc'),
-        rating: $('.js-add-bookmark-rating input:checked')
-      };
-      const userInput = grabInput(inputForm);
-      // clear form
-      resetForm(inputForm);
-      store.toggleAddBookmarkForm();
-      renderBookmarkFormDisplay();
-      // send new item to API
-      api.addItem(userInput, (response) => {
-        store.addItem(response);
-        render();
-      });
-      // add item to store
-      
-      // render
+  const handleFilterLevelClick = function() {
+    page.menuFilterContainer.on('click', '.dropdown-item', (e) => {
+      // Grab the filter level selected
+      const filterLevel = $(e.currentTarget).data('filter');
+      // Set the new filter level state
+      store.setFilterLevel(filterLevel);
+      // Close the filter menu
+      store.toggleRatingsFilterMenu();
+      // Render new view
+      render();
     });
   };
+ 
+  // DELETING ITEMS
 
   const handleDeleteBookmark = function() {
     $(page.bookmarkListContainer).on('click', '.js-delete-item', (e) => {
@@ -179,6 +208,8 @@ const list = (function() {
       render();
     });
   };
+
+  // COLLAPSE/EXPAND BOOKMARK CARDS
 
   const handleExpandBookmark = function() {
     page.bookmarkListContainer.on('click', '.list-container-condensed', (e) => {
@@ -204,13 +235,17 @@ const list = (function() {
     });
   };
 
+  /////////////////////////////////////////////////
+
   const bindEventListeners = function() {
     handleAddBookmarkFormToggle();
     handleDeleteBookmark();
     handleExpandBookmark();
     handleCollapseBookmark();
     handleAddBookmarkSubmit();
+    handleAddBookmarkFormCancel();
     handleFilterButtonToggle();
+    handleFilterLevelClick();
   };
   return {
     bindEventListeners,
