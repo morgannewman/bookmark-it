@@ -1,7 +1,9 @@
 const store = (function() {
   const state = {
     items: [],
-    displayAddBookmarkForm: false
+    displayAddBookmarkForm: false,
+    displayRatingFilterMenu: false,
+    ratingsFilterLevel: 0
   };
 
   // {
@@ -46,9 +48,17 @@ const store = (function() {
     state.displayAddBookmarkForm = !state.displayAddBookmarkForm;
   };
 
+  const toggleRatingsFilterMenu = function() {
+    state.displayRatingFilterMenu = !state.displayRatingFilterMenu;
+  };
+
   const shouldDisplayAddForm = function() {
     return state.displayAddBookmarkForm === true;
   }
+
+  const shouldDisplayFilterMenu = function() {
+    return state.displayRatingFilterMenu === true;
+  };
 
   return {
     state,
@@ -57,7 +67,9 @@ const store = (function() {
     findById,
     findAndDelete,
     toggleAddBookmarkForm,
+    toggleRatingsFilterMenu,
     shouldDisplayAddForm,
+    shouldDisplayFilterMenu,
     addItem
   };
 }());

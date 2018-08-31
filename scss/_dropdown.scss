@@ -3,6 +3,7 @@
 }
 
 .dropdown-items {
+  display: none;
   position: absolute;
   width: 160px;
   @include respond-above-small {
@@ -30,6 +31,7 @@
   &:last-child {
     border-bottom: none;
   }
+  z-index: 2;
 }
 
 .dropdown-text:hover {

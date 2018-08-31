@@ -3,7 +3,8 @@ const list = (function() {
     addBookmarkToggler: $('.js-add-bookmark-toggler'),
     addBookmarkFormContainer: $('.add-bookmark-container'),
     addBookmarkForm: $('.add-bookmark-form'),
-    bookmarkListContainer: $('.js-bookmark-list')    
+    bookmarkListContainer: $('.js-bookmark-list'),
+    menuFilterContainer: $('.js-dropdown')    
   };
 
   //_____________________________________________
@@ -79,6 +80,17 @@ const list = (function() {
       page.addBookmarkFormContainer.toggle(false);
     }
   };
+
+  const renderFilterMenuDisplay = function() {
+    if (store.shouldDisplayFilterMenu()) {
+      $('.js-dropdown-items').toggle(true);
+      $('.js-button-filter').addClass('button-filter-active');
+    }
+    else {
+      $('.js-dropdown-items').toggle(false);
+      $('.js-button-filter').removeClass('button-filter-active');
+    }
+  };
   
   const renderBookmarkCards = function() {
     page.bookmarkListContainer.html(generateBookmarkCards());
@@ -87,6 +99,7 @@ const list = (function() {
   const render = function() {
     console.log('rendering!~');
     renderBookmarkFormDisplay();
+    renderFilterMenuDisplay();
     renderBookmarkCards();
   };
 
@@ -102,9 +115,14 @@ const list = (function() {
       render();
     });
   };
-  // Buttons
-    // js-add-cancel
-    // js-add-submit
+  const handleFilterButtonToggle = function() {
+    page.menuFilterContainer.on('click', '.js-button-filter', (e) => {
+      // Toggle the display state in storage
+      store.toggleRatingsFilterMenu();
+      // Render new view
+      render();
+    });
+  };
  
   const grabInput = function(inputForm) {
     const result = {};
@@ -192,6 +210,7 @@ const list = (function() {
     handleExpandBookmark();
     handleCollapseBookmark();
     handleAddBookmarkSubmit();
+    handleFilterButtonToggle();
   };
   return {
     bindEventListeners,
