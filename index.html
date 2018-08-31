@@ -23,7 +23,47 @@
     </header>
     <!-- Main buttons -->
     <button type="button" class="button-primary button-primary-cta js-add-bookmark-toggler">Add Bookmark +</button>
-    <button type="button" class="button-ghost button-ghost-filter">Filter by Rating <span class="fas fa-angle-down"></span></button>
+    <div class="dropdown js-dropdown">
+        <button type="button" class="button-ghost button-ghost-filter button-filter-active js-button-filter">Filter by Rating <span class="fas fa-angle-down"></span></button>
+        <ol class="dropdown-items js-dropdown-items">
+          <li class="dropdown-item dropdown-text">Show all</li>
+          <li class="dropdown-item">
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+          </li>
+          <li class="dropdown-item">
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+          </li>
+          <li class="dropdown-item">
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+          </li>
+          <li class="dropdown-item">
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+          </li>
+          <li class="dropdown-item">
+            <span class="dropdown-star-active star star-active">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+            <span class="dropdown-star-inactive star star-inactive">★</span>
+          </li>
+        </ol>
+      </div>
     <!-- Add Bookmark Form -->
     <div class="add-bookmark-container">
       <h2 class="add-bookmark-title">Create a Bookmark</h2>

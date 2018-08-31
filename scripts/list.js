@@ -81,7 +81,6 @@ const list = (function() {
   };
   
   const renderBookmarkCards = function() {
-    // console.log(store.state.items)
     page.bookmarkListContainer.html(generateBookmarkCards());
   };
 
@@ -116,6 +115,13 @@ const list = (function() {
     return result;
   };
 
+  const resetForm = function(inputForm) {
+    inputForm.title.val('');
+    inputForm.url.val('');
+    inputForm.desc.val('');
+    inputForm.rating.prop('checked', false);
+    };
+
   const handleAddBookmarkSubmit = function() {
     page.addBookmarkForm.on('submit', (e) => {
       e.preventDefault();
@@ -126,6 +132,18 @@ const list = (function() {
         rating: $('.js-add-bookmark-rating input:checked')
       };
       const userInput = grabInput(inputForm);
+      // clear form
+      resetForm(inputForm);
+      store.toggleAddBookmarkForm();
+      renderBookmarkFormDisplay();
+      // send new item to API
+      api.addItem(userInput, (response) => {
+        store.addItem(response);
+        render();
+      });
+      // add item to store
+      
+      // render
     });
   };
 

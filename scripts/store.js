@@ -12,7 +12,7 @@ const store = (function() {
   //   "rating": 4
   // }
   const addItem = function(bookmarkObj) {
-    state.items.push(Object.assign(
+    state.items.unshift(Object.assign(
       bookmarkObj, 
       {expanded: false}
     ));
@@ -24,19 +24,18 @@ const store = (function() {
 
   const findAndDelete = function(id) {
     const itemIndex = state.items.findIndex(((item) => item.id === id));
-    console.log(itemIndex);
     state.items.splice(itemIndex, 1);
   }
 
   const populateStore = function() {
-    api.MOCK_DATA.forEach((item) => store.addItem(item));
-    list.render();
-    // api.fetchItems((items) => {
-    //   items.forEach((item) => {
-    //     store.addItem(item);
-    //   });
-    //   list.render();
-    // });
+    // api.MOCK_DATA.forEach((item) => store.addItem(item));
+    // list.render();
+    api.fetchItems((items) => {
+      items.forEach((item) => {
+        store.addItem(item);
+      });
+      list.render();
+    });
   };
 
   const toggleItemIsExpanded = function(item) {

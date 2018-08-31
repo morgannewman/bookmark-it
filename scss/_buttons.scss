@@ -25,11 +25,22 @@
   margin-bottom: 16px;
 }
 
-.button-primary-cta {
+.button-ghost-filter {
+  width: 160px;
+  @include respond-above-small {
+    width: 190px;
+  }
 }
 
-.button-ghost-filter {
+.button-filter-active {
+  border: 1px $focus solid;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background-color: $focus;
+  color: white;
+  @include shadow;
 }
+
 
 // LVHA
 

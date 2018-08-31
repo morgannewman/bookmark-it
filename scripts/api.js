@@ -37,7 +37,18 @@ const api = (function() {
     $.ajax(query, callback);
   };
 
-  const addItem = function() {};
+  const addItem = function(bookmark, callback) {
+    const query = {
+      url: BASE_URL,
+      type: 'POST',
+      data: JSON.stringify(bookmark),
+      contentType: 'application/json',
+      success: callback
+    };
+    $.ajax(query);
+      // .done(success)
+      // .fail(error);
+  };
 
   return {
     fetchItems,
