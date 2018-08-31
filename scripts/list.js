@@ -127,6 +127,8 @@ const list = (function() {
       store.toggleAddBookmarkForm();
       // Render new view
       render();
+      // Set focus on first input
+      $('.js-add-bookmark-title').focus();
     });
   };
 
@@ -151,7 +153,10 @@ const list = (function() {
       // clear form
       resetForm();
       store.toggleAddBookmarkForm();
+      // render new view
       renderBookmarkFormDisplay();
+      // set focus on "Add Bookmark" button
+      $('.js-add-bookmark-toggler').focus();
     });
   };
 
