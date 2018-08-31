@@ -2,6 +2,7 @@
 // button-ghost-cancel, button-primary-submit
 
 .button-primary, .button-ghost {
+
   margin: 8px 0;
   border-radius: 10px;
   border: 1px $primary solid;
@@ -44,16 +45,16 @@
 .button-primary-link {
   display: inline-block;
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
   @include respond-above-small {
-    margin-bottom: 9px;
+    margin-bottom: 6px;
   }
 }
 
 
 // LVHA
 
-.button-ghost:active, .button-hover:active, .button-primary:hover, .button-ghost:hover {
+.button-ghost:active, .button-ghost:focus, .button-primary:focus, .button-hover:active, .button-primary:hover, .button-ghost:hover {
   @include shadow;
   background-color: $focus;
   border: 1px $focus solid;
