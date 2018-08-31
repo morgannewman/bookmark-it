@@ -6,16 +6,12 @@ const list = (function() {
     bookmarkListContainer: $('.js-bookmark-list')    
   };
 
-  const handleBookmarkFormDisplay = function() {
-    if (store.shouldDisplayAddForm()) {
-      page.addBookmarkFormContainer.toggle(true);
-    }
-    else {
-      page.addBookmarkFormContainer.toggle(false);
-    }
-  };
+  //_____________________________________________
+  // CONSTRUCT VIEW LAYER
+  //_____________________________________________
 
-  const renderStars = function(rating) {
+
+  const generateStars = function(rating) {
     let result = '';
     // Generate `rating` colored stars
     for (let i = 0; i < rating; i++) {
@@ -36,21 +32,13 @@ const list = (function() {
         <h3 class="list-item-title">${bookmark.title}</h3>
         <div class="list-item-container">
           <div class="list-item-stars">
-            ${renderStars(bookmark.rating)}
+            ${generateStars(bookmark.rating)}
           </div>
         </div>
       </div>
     </div>
     `;
   };
-
-    // {
-  //   "id": "8sdfbvbs65sd",
-  //   "title": "Google",
-  //   "url": "http://google.com",
-  //   "desc": "An indie search engine startup",
-  //   "rating": 4
-  // }
 
   const generateExpandedCardHTML = function(bookmark) {
     // TODO: Change button over to link. Must fix styling.
@@ -63,9 +51,9 @@ const list = (function() {
           <div class="list-item-expanded-bottom-items">
             <button href="${bookmark.url}" target="_blank" class="button-primary">Visit Site</button>
             <div class="list-item-stars list-item-stars-expanded">
-              ${renderStars(bookmark.rating)}
+              ${generateStars(bookmark.rating)}
           </div>
-          <i class="list-item-delete fas fa-trash-alt fa-lg"></i>
+          <span data-id="${bookmark.id}" class="js-delete-item list-item-delete fas fa-trash-alt fa-lg"></span>
         </div>
       </div>
     </div>
@@ -77,20 +65,29 @@ const list = (function() {
       if (bookmark.expanded) return generateExpandedCardHTML(bookmark);
       else return generateCondensedCardHTML(bookmark);
     }).join('');
-  }
+  };
 
+  //_____________________________________________
+  // RENDER VIEW LAYER
+  //_____________________________________________
+
+  const renderBookmarkFormDisplay = function() {
+    if (store.shouldDisplayAddForm()) {
+      page.addBookmarkFormContainer.toggle(true);
+    }
+    else {
+      page.addBookmarkFormContainer.toggle(false);
+    }
+  };
+  
   const renderBookmarkCards = function() {
     // console.log(store.state.items)
     page.bookmarkListContainer.html(generateBookmarkCards());
   };
 
-  //_____________________________________________
-  // Render view layer
-  //_____________________________________________
-
   const render = function() {
     console.log('rendering!~');
-    handleBookmarkFormDisplay();
+    renderBookmarkFormDisplay();
     renderBookmarkCards();
   };
 
@@ -98,35 +95,85 @@ const list = (function() {
   // EVENT LISTENERS
   //_____________________________________________
 
-  const handleAddBookmarkToggle = function() {
+  const handleAddBookmarkFormToggle = function() {
     page.addBookmarkToggler.on('click', (e) => {
+      // Toggle the display state in storage
       store.toggleAddBookmarkForm();
+      // Render new view
+      render();
+    });
+  };
+  // Buttons
+    // js-add-cancel
+    // js-add-submit
+ 
+  const grabInput = function(inputForm) {
+    const result = {};
+    result.title = inputForm.title.val();
+    result.url = inputForm.url.val();
+    result.desc = inputForm.desc.val();
+    result.rating = inputForm.rating.val();
+    return result;
+  };
+
+  const handleAddBookmarkSubmit = function() {
+    page.addBookmarkForm.on('submit', (e) => {
+      e.preventDefault();
+      const inputForm = {
+        title: $('.js-add-bookmark-title'),
+        url: $('.js-add-bookmark-url'),
+        desc: $('.js-add-bookmark-desc'),
+        rating: $('.js-add-bookmark-rating input:checked')
+      };
+      const userInput = grabInput(inputForm);
+    });
+  };
+
+  const handleDeleteBookmark = function() {
+    $(page.bookmarkListContainer).on('click', '.js-delete-item', (e) => {
+      // Grab the ID of the bookmark
+      const id = $(e.currentTarget).data('id');
+      // delete the item from our API
+      api.deleteItem(id, (r) => {
+        
+      });
+      // delete the item from our store
+      store.findAndDelete(id);
+      // render new view
       render();
     });
   };
 
   const handleExpandBookmark = function() {
     page.bookmarkListContainer.on('click', '.list-container-condensed', (e) => {
+      // Grab the ID of the clicked bookmark
       const container = $(e.currentTarget);
       const storeItem = store.findById(container.data('id'));
+      // Toggle the expanded state of the item in storage
       store.toggleItemIsExpanded(storeItem);
+      // Render new view
       render();
     });
   };
 
   const handleCollapseBookmark = function() {
     page.bookmarkListContainer.on('click', ' .list-item-title-expanded', (e) => {
+      // Grab the ID of the clicked bookmark
       const container = $(e.currentTarget).parents('.list-container-expanded');
       const storeItem = store.findById(container.data('id'));
+      // Toggle the expanded state of the item in storage
       store.toggleItemIsExpanded(storeItem);
+      // Render new view
       render();
     });
   };
 
   const bindEventListeners = function() {
-    handleAddBookmarkToggle();
+    handleAddBookmarkFormToggle();
+    handleDeleteBookmark();
     handleExpandBookmark();
     handleCollapseBookmark();
+    handleAddBookmarkSubmit();
   };
   return {
     bindEventListeners,

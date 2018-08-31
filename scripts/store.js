@@ -22,12 +22,21 @@ const store = (function() {
     return state.items.find(((item) => item.id === id));
   };
 
+  const findAndDelete = function(id) {
+    const itemIndex = state.items.findIndex(((item) => item.id === id));
+    console.log(itemIndex);
+    state.items.splice(itemIndex, 1);
+  }
+
   const populateStore = function() {
-    // api.fetchItems((items) => {
-    //   items.forEach((item) => store.addItem(item));
-    // });
     api.MOCK_DATA.forEach((item) => store.addItem(item));
     list.render();
+    // api.fetchItems((items) => {
+    //   items.forEach((item) => {
+    //     store.addItem(item);
+    //   });
+    //   list.render();
+    // });
   };
 
   const toggleItemIsExpanded = function(item) {
@@ -47,6 +56,7 @@ const store = (function() {
     toggleItemIsExpanded,
     populateStore,
     findById,
+    findAndDelete,
     toggleAddBookmarkForm,
     shouldDisplayAddForm,
     addItem

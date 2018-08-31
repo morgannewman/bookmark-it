@@ -31,20 +31,20 @@
         <div class="add-bookmark-form-container">
           <div class="add-bookmark-group">
             <label class="add-bookmark-label" for="add-bookmark-title">Title</label>
-            <input class="add-bookmark-input add-bookmark-group-margin" type="text" name="title" id="add-bookmark-title" required>
+            <input class="js-add-bookmark-title add-bookmark-input add-bookmark-group-margin" type="text" name="title" id="add-bookmark-title" required>
           </div>
           <div class="add-bookmark-group">
             <label class="add-bookmark-label" for="add-bookmark-url">URL</label>
-            <input class="add-bookmark-input" type="url" name="url" id="add-bookmark-url" required>
+            <input class="js-add-bookmark-url add-bookmark-input" type="url" name="url" id="add-bookmark-url" required>
           </div>
           <br style="clear: both">
           <label class="add-bookmark-label add-bookmark-label-last" for="add-bookmark-desc">Description</label>
           <!-- Max chars: 200 -->
-          <textarea class="add-bookmark-textarea" name="desc" id="add-bookmark-desc" cols="30" rows="3" autocapitalize="sentences" maxlength="500" required></textarea>
+          <textarea class="js-add-bookmark-desc add-bookmark-textarea" name="desc" id="add-bookmark-desc" cols="30" rows="3" autocapitalize="sentences" maxlength="500" required></textarea>
           <br>
           <!-- STARS FORM -->
           <label class="add-bookmark-label add-bookmark-label-last">Rating</label>
-          <div id="rating-form" class="list-item-rating">
+          <div id="rating-form" class="js-add-bookmark-rating list-item-rating">
             <label>
               <input type="radio" name="stars" value="1" required />
               <span class="star star-rating">★</span>
@@ -77,8 +77,8 @@
             </label>
           </div>
           <br>
-          <button type="button" class="button-ghost button-ghost-cancel">Cancel</button>
-          <button type="submit" class="button-primary button-primary-submit">Add Bookmark</button>
+          <button type="button" class="button-ghost js-add-cancel button-ghost-cancel">Cancel</button>
+          <button type="submit" class="js-add-submit button-primary button-primary-submit">Add Bookmark</button>
       </form>
     </div>
     </div>

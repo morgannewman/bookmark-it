@@ -29,8 +29,20 @@ const api = (function() {
     $.getJSON(BASE_URL, callback);
   };
 
+  const deleteItem = function(id, callback) {
+    const query = {
+      url: `${BASE_URL}/${id}`,
+      type: 'DELETE'
+    };
+    $.ajax(query, callback);
+  };
+
+  const addItem = function() {};
+
   return {
     fetchItems,
+    addItem,
+    deleteItem,
 
     MOCK_DATA
   };
