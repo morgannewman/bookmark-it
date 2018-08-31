@@ -14,13 +14,6 @@ const list = (function() {
       page.addBookmarkFormContainer.toggle(false);
     }
   };
-  // {
-  //   "id": "8sdfbvbs65sd",
-  //   "title": "Google",
-  //   "url": "http://google.com",
-  //   "desc": "An indie search engine startup",
-  //   "rating": 4
-  // }
 
   const renderStars = function(rating) {
     let result = '';
@@ -51,8 +44,32 @@ const list = (function() {
     `;
   };
 
-  const generateExpandedCardHTML = function(bookmark) {
+    // {
+  //   "id": "8sdfbvbs65sd",
+  //   "title": "Google",
+  //   "url": "http://google.com",
+  //   "desc": "An indie search engine startup",
+  //   "rating": 4
+  // }
 
+  const generateExpandedCardHTML = function(bookmark) {
+    // TODO: Change button over to link. Must fix styling.
+    return `
+      <div data-id="${bookmark.id}" class="list-container list-container-expanded">
+        <div class="fas fa-angle-up fa-lg list-item-condenser"></div>
+        <h3 class="list-item-title list-item-title-expanded">${bookmark.title}</h3>
+        <div class="list-item-container list-item-container-expanded">
+          <p class="list-item-description">${bookmark.desc}</p>
+          <div class="list-item-expanded-bottom-items">
+            <button href="${bookmark.url}" target="_blank" class="button-primary">Visit Site</button>
+            <div class="list-item-stars list-item-stars-expanded">
+              ${renderStars(bookmark.rating)}
+          </div>
+          <i class="list-item-delete fas fa-trash-alt fa-lg"></i>
+        </div>
+      </div>
+    </div>
+`;
   };
 
   const generateBookmarkCards = function() {
@@ -72,6 +89,7 @@ const list = (function() {
   //_____________________________________________
 
   const render = function() {
+    console.log('rendering!~');
     handleBookmarkFormDisplay();
     renderBookmarkCards();
   };
@@ -87,18 +105,28 @@ const list = (function() {
     });
   };
 
-  const handleExpandBookmarkToggle = function() {
+  const handleExpandBookmark = function() {
     page.bookmarkListContainer.on('click', '.list-container-condensed', (e) => {
-      const domItem = $(e.currentTarget);
-      const localItem = store.findById(domItem.data('id'));
-      store.toggleItemIsExpanded(localItem);
+      const container = $(e.currentTarget);
+      const storeItem = store.findById(container.data('id'));
+      store.toggleItemIsExpanded(storeItem);
+      render();
+    });
+  };
+
+  const handleCollapseBookmark = function() {
+    page.bookmarkListContainer.on('click', ' .list-item-title-expanded', (e) => {
+      const container = $(e.currentTarget).parents('.list-container-expanded');
+      const storeItem = store.findById(container.data('id'));
+      store.toggleItemIsExpanded(storeItem);
       render();
     });
   };
 
   const bindEventListeners = function() {
     handleAddBookmarkToggle();
-    handleExpandBookmarkToggle();
+    handleExpandBookmark();
+    handleCollapseBookmark();
   };
   return {
     bindEventListeners,
