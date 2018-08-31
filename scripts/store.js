@@ -60,6 +60,10 @@ const store = (function() {
     return state.displayRatingFilterMenu === true;
   };
 
+  const currentFilterLevel = function() {
+    return state.ratingsFilterLevel;
+  };
+
   // EXPANDING/CONTRACTING CARDS
   
   const toggleItemIsExpanded = function(item) {
@@ -82,6 +86,7 @@ const store = (function() {
     shouldDisplayFilterMenu,
     toggleRatingsFilterMenu,
     setFilterLevel,
+    currentFilterLevel,
     // Expand/Contract cards
     toggleItemIsExpanded
   };

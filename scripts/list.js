@@ -62,10 +62,15 @@ const list = (function() {
   };
 
   const generateBookmarkCards = function() {
-    return store.state.items.map((bookmark) => {
-      if (bookmark.expanded) return generateExpandedCardHTML(bookmark);
-      else return generateCondensedCardHTML(bookmark);
-    }).join('');
+    return store.state.items.reduce((bookmarks, item) => {
+      // If the item is at the current filter level or higher...
+      if (item.rating >= store.currentFilterLevel()) {
+        // Render the correct expanded/condensed state
+        if (item.expanded) bookmarks.push( generateExpandedCardHTML(item));
+        else bookmarks.push(generateCondensedCardHTML(item));
+      }
+      return bookmarks;
+    }, []).join('');
   };
 
   //_____________________________________________
